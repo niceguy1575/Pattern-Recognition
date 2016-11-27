@@ -1,5 +1,6 @@
 function d = check_grad(X, epsilon, data, targets, hyperparameters)
     
+    % Centered Difference Qutoient
     szx = size(X);
     if length(szx) ~= 2  || szx(2) ~= 1
         error( 'ValueError(X must be a vector)');

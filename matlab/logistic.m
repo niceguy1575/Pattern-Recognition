@@ -8,11 +8,12 @@ function [f, df, y] = logistic(weights, data, targets, hyperparameters)
     for i = 1:N
         d = dot(data(i,1:end), ws);
         z(i) = d + b;
-        zg(i) = sigmoid(z(i));
+        zg(i) = sigmoid(z(i)); % logistic prediction
     end
     
     df = zeros(1,M+1);
     
+    % df is the final simplying after gradient and differentiation
     for j = 1:M
         df(j) = dot(data(:, j)', (zg' - targets));
     end
@@ -22,6 +23,7 @@ function [f, df, y] = logistic(weights, data, targets, hyperparameters)
 
     df(M+1) = b;
     y = logistic_predict(weights, data);
+    % f is the loss function
     fs = evaluate(targets, y);
     f = fs(1);
 end
